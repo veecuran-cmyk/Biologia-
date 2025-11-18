@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Ciclos bioquimicos 🚀📘</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #f5f5dc, #ffe4e1); /* Tons mais suaves e alegres */
+            text-align: center;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #ff69b4; /* Pink vibrante */
+            font-size: 3.5em;
+            text-shadow: 3px 3px #fff;
+            animation: bounce 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+        .subtitle {
+            font-size: 1.5em;
+            color: #5aa9e6;
+            margin-bottom: 40px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        .cycle-box {
+            background-color: #ffffff;
+            border: 6px dashed; /* Mudei para pontilhado */
+            border-radius: 25px;
+            padding: 30px;
+            margin: 20px;
+            width: 320px;
+            box-shadow: 12px 12px 0 #ffd700; /* Sombra dourada */
+            transition: all 0.4s ease-in-out;
+            cursor: pointer;
+        }
+        .cycle-box:hover {
+            transform: scale(1.08) rotate(3deg);
+            box-shadow: 18px 18px 0 #ff4500;
+        }
+        .water-box { border-color: #1e90ff; } /* Azul forte */
+        .carbon-box { border-color: #008000; } /* Verde escuro */
+        .nitrogen-box { border-color: #8a2be2; } /* Roxo vibrante */
+        .emoji { font-size: 5em; display: block; margin-bottom: 15px; }
+        
+        /* Estilo do Popup */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85); /* Fundo mais escuro */
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .popup-content {
+            background: #fffafa; /* Branco neve */
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 0 30px rgba(255, 255, 0, 0.9); /* Brilho amarelo */
+            max-width: 90%;
+            min-height: 300px;
+            position: relative;
+            animation: zoomIn 0.6s forwards;
+            border: 8px solid;
+            text-align: left;
+            overflow-y: auto; /* Scroll para conteúdo grande */
+            max-height: 90vh;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 40px;
+            cursor: pointer;
+            color: #ff007f; /* Rosa choque */
+            transition: transform 0.2s;
+        }
+        .close-btn:hover {
+            transform: rotate(90deg) scale(1.2);
+        }
+        .detail-point {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 5px solid;
+            background: #f0f8ff;
+        }
+    </style>
+</head>
+<body>
+<h1>✨Ciclos✨<br>bioquimicos</h1>
+    <p class="subtitle">Clique nas caixas para uma explicação detalhada e interativa de como a Terra recicla seus elementos essenciais!</p>
+
+    <div class="container">
+        
+        <div class="cycle-box water-box" onclick="showPopup('water', '#1e90ff')">
+            <span class="emoji">🌊💧🌨️</span>
+            <h2>Ciclo da Água (H₂O)</h2>
+            <p>O motor do clima e da vida. Veja as transformações de estado! 🏞️</p>
+        </div>
+
+        <div class="cycle-box carbon-box" onclick="showPopup('carbon', '#008000')">
+            <span class="emoji">🌲🔥🏭</span>
+            <h2>Ciclo do Carbono CO2</h2>
+            <p>O esqueleto das moléculas orgânicas. Entenda seu papel no clima! 💨</p>
+        </div>
+
+        <div class="cycle-box nitrogen-box" onclick="showPopup('nitrogen', '#8a2be2')">
+            <span class="emoji">🧬🦠⚡</span>
+            <h2>Ciclo do Nitrogênio ($N_2$)</h2>
+            <p>O nutriente que exige superpoderes bacterianos. Descubra a fixação! 🌱</p>
+        </div>
+
+    </div>
+
+    <div id="myPopup" class="popup" onclick="hidePopup()">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="hidePopup()">&times;</span>
+            <h3 id="popup-title"></h3>
+            <div id="popup-text"></div>
+        </div>
+    </div>
+
+    <script>
+        const popupData = {
+            water: {
+                title: "💧 Ciclo da Água: Movimento e Transformação",
+                details: [
+                    {
+                        title: "1. ☀️ Evaporação & Transpiração",
+                        emoji: "⬆️",
+                        text: "A energia solar aquece a água de oceanos e rios, transformando-a em vapor (Evaporação). As plantas também liberam vapor pelos estômatos (Transpiração). Juntas, formam a **Evapotranspiração**."
+                    },
+                    {
+                        title: "2. ☁️ Condensação",
+                        emoji: "🥶",
+                        text: "O vapor d'água sobe, encontra ar mais frio e se condensa em minúsculas gotículas de água ou cristais de gelo, que flutuam e formam as **nuvens**. É a mudança do estado gasoso para o líquido/sólido."
+                    },
+                    {
+                        title: "3. 🌧️ Precipitação",
+                        emoji: "⬇️",
+                        text: "Quando as gotículas nas nuvens se aglomeram e ficam muito pesadas, a gravidade as puxa para baixo, caindo como chuva, neve ou granizo. É a principal forma de retorno da água à superfície."
+                    },
+                    {
+                        title: "4. 🏞️ Escoamento e Infiltração",
+                        emoji: "➡️",
+                        text: "A água que atinge a superfície pode escorrer (Escoamento Superficial) para rios e lagos, ou penetrar no solo (Infiltração), recarregando os **lençóis freáticos** (água subterrânea). Essa água subterrânea pode emergir em nascentes."
+                    }
+                ],
+                funfact: "📢 **Curiosidade:** Menos de 3% da água do planeta é doce, e a maior parte dela está congelada nas calotas polares ou como água subterrânea! O ciclo hidrológico é vital para distribuí-la."
+            },
+            carbon: {
+                title: "🌳 Ciclo do Carbono: O Equilíbrio Climático",
+                details: [
+                    {
+                        title: "1. 🌿 Fixação Biológica (Fotossíntese)",
+                        emoji: "🔄",
+                        text: "Plantas, algas e cianobactérias absorvem o $CO_2$ atmosférico e o convertem em moléculas orgânicas (glicose) usando a luz solar. É a porta de entrada do carbono na cadeia alimentar."
+                    },
+                    {
+                        title: "2. 💨 Devolução Rápida (Respiração)",
+                        emoji: " exhale",
+                        text: "Tanto produtores quanto consumidores (animais) quebram as moléculas orgânicas para obter energia, liberando $CO_2$ de volta para a atmosfera durante a **respiração celular**."
+                    },
+                    {
+                        title: "3. 💀 Decomposição",
+                        emoji: " breakdown",
+                        text: "Fungos e bactérias decompositoras liberam o carbono na forma de $CO_2$ ao quebrar a matéria orgânica de organismos mortos e resíduos."
+                    },
+                    {
+                        title: "4. ⛽ Reservatórios Lentos",
+                        emoji: "⏳",
+                        text: "O carbono pode ficar armazenado por milhões de anos em **combustíveis fósseis** (carvão, petróleo), sedimentos marinhos e rochas carbonáticas. Os oceanos também são um enorme reservatório."
+                    }
+                ],
+                funfact: "🔥 **Impacto Humano:** A queima de combustíveis fósseis está liberando $CO_2$ armazenado rapidamente, desequilibrando o ciclo natural e intensificando o **Efeito Estufa** e o Aquecimento Global. **Precisamos de mais árvores!**"
+            },
+            nitrogen: {
+                title: "🧬 Ciclo do Nitrogênio: Essencial para o DNA e Proteínas",
+                details: [
+                    {
+                        title: "1. ⚡ Fixação (N₂ → NH₃)",
+                        emoji: "🔗",
+                        text: "O $N_2$ (gás nitrogênio) atmosférico é inerte. Apenas algumas bactérias e cianobactérias (algumas associadas a raízes de leguminosas) conseguem quebrá-lo e convertê-lo em amônia ($NH_3$) ou amônio ($NH_4^+$)."
+                    },
+                    {
+                        title: "2. 🧪 Nitrificação (NH₄⁺ → NO₃⁻)",
+                        emoji: "✨",
+                        text: "Um processo de duas etapas: Bactérias *Nitrosomonas* convertem amônio em **Nitrito ($NO_2^-$)**. Em seguida, bactérias *Nitrobacter* convertem nitrito em **Nitrato ($NO_3^-$)**. O nitrato é a forma mais fácil de as plantas absorverem."
+                    },
+                    {
+                        title: "3. 🌱 Assimilação",
+                        emoji: "🍽️",
+                        text: "As plantas absorvem o Nitrato e o Amônio do solo e os usam para construir suas próprias moléculas, como proteínas e ácidos nucleicos (DNA/RNA). O nitrogênio entra na cadeia alimentar."
+                    },
+                    {
+                        title: "4. 🌪️ Desnitrificação (NO₃⁻ → N₂)",
+                        emoji: " out",
+                        text: "Bactérias desnitrificantes (em condições de pouco oxigênio) convertem o Nitrato ($NO_3^-$) de volta em gás nitrogênio ($N_2$), que retorna à atmosfera, fechando o ciclo. Esse processo é o oposto da fixação."
+                    }
+                ],
+                funfact: "💡 **A Lenda:** O $N_2$ pode ser fixado naturalmente também por descargas elétricas (raios)! O raio tem energia suficiente para quebrar a forte ligação tripla do gás nitrogênio no ar, formando óxidos que chegam ao solo com a chuva. ⛈️"
+            }
+        };
+
+        function showPopup(cycle, color) {
+            const data = popupData[cycle];
+            const popupContent = document.getElementById('popup-text');
+            
+            document.getElementById('popup-title').innerHTML = `${data.title} ${cycle === 'water' ? '🌊' : cycle === 'carbon' ? '🌳' : '🧬'}`;
+            
+            // Limpa o conteúdo anterior
+            popupContent.innerHTML = ''; 
+
+            // Adiciona os pontos de detalhe
+            data.details.forEach(item => {
+                const detailDiv = document.createElement('div');
+                detailDiv.className = 'detail-point';
+                detailDiv.style.borderColor = color;
+                detailDiv.innerHTML = `
+                    <h4>${item.emoji} **${item.title}**</h4>
+                    <p>${item.text}</p>
+                `;
+                popupContent.appendChild(detailDiv);
+            });
+
+            // Adiciona o fato divertido em destaque
+            const funFactDiv = document.createElement('div');
+            funFactDiv.className = 'detail-point';
+            funFactDiv.style.borderColor = '#ff4500'; /* Cor de destaque para o fato divertido */
+            funFactDiv.style.backgroundColor = '#fffacd'; /* Amarelo clarinho */
+            funFactDiv.innerHTML = `<p>${data.funfact}</p>`;
+            popupContent.appendChild(funFactDiv);
+
+            // Estiliza o popup e mostra
+            document.querySelector('.popup-content').style.borderColor = color;
+            document.getElementById('myPopup').style.display = 'flex';
+        }
+
+        function hidePopup() {
+            document.getElementById('myPopup').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
